@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="{{ route('usuarios.store') }}" method="POST">
+    <form action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
 
@@ -57,7 +57,7 @@
                 @endif
             </div>
 
-            <div class="col-4">
+            <div class="col-3">
                 <label for="direccion" class="form-label">Dirección del usuario</label>
                 <input type="text" class="form-control" name="direccion" id="direccion"
                     placeholder="Ingrese el direccion del usuario">
@@ -65,7 +65,7 @@
                     <p class="text-danger">{{ $errors->first('direccion') }}</p>
                 @endif
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <label for="password" class="form-label">Contraseña del usuario</label>
                 <input type="password" class="form-control" name="password" id="password"
                     placeholder="Ingrese el password del usuario">
@@ -73,7 +73,7 @@
                     <p class="text-danger">{{ $errors->first('password') }}</p>
                 @endif
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <label for="rol_id" class="form-label">Rol del usuario</label>
                 <select class="form-select" aria-label="Default select example" name="rol_id" id="rol_id">
                     <option value="">Seleccione el rol del usuario</option>
@@ -85,6 +85,13 @@
                 </select>
                 @if ($errors->has('rol_id'))
                     <p class="text-danger">{{ $errors->first('rol_id') }}</p>
+                @endif
+            </div>
+            <div class="col-3">
+                <label for="foto" class="form-label">Foto del perfil</label>
+                <input type="file" class="form-control" name="foto" id="foto" >
+                @if ($errors->has('foto'))
+                    <p class="text-danger">{{ $errors->first('foto') }}</p>
                 @endif
             </div>
 

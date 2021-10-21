@@ -53,6 +53,7 @@ class UsuariosController extends Controller
             'rol_id' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'foto' => 'required',
         ],[
             'nombre.required' => 'El nombre del usuario es requerido',
             'apellido.required' => 'El apellido es requerido',
@@ -78,6 +79,19 @@ class UsuariosController extends Controller
         $usuario->rol_id = $request->rol_id;
         $usuario->email = $request->email;
         $usuario->password = Hash::make($request->password);
+
+        if ($request->hasFile("foto")) {
+           $file = $request->file("foto");
+
+           $nombre = "photo_".time().".".$file->guessExtension();
+
+           $ruta = public_path("fotos/".$nombre);
+
+           copy($file, $ruta);
+
+           $usuario->foto = $nombre;
+
+        }
         $usuario->save();
 
 

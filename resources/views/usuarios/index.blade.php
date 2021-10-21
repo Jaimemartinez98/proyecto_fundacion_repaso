@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Foto Perfil</th>
                     <th scope="col">Nombre Completo</th>
                     <th scope="col">Email</th>
                     <th scope="col">Acciones</th>
@@ -17,7 +18,11 @@
             <tbody>
                 @foreach ($usuarios as $usuario)
                     <tr>
+
                         <th scope="row">{{ $usuario->id }}</th>
+                        <th scope="row">
+                            <img src="{{asset("fotos/".$usuario->foto)}}" width="100px" height="100px">
+                        </th>
                         <td>{{ $usuario->nombre }} {{ $usuario->apellido }}</td>
                         <td>{{ $usuario->email }}</td>
                         <td>
