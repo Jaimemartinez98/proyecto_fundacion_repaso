@@ -4,12 +4,13 @@
 
     <form action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+
         <div class="row">
 
             <div class="col-4">
                 <label for="nombre" class="form-label">Nombre del usuario</label>
                 <input type="text" class="form-control" name="nombre" id="nombre"
-                    placeholder="Ingrese el nombre del usuario">
+                    placeholder="Ingrese el nombre del usuario" value="{{ old('nombre') }}">
                 @if ($errors->has('nombre'))
                     <p class="text-danger">{{ $errors->first('nombre') }}</p>
                 @endif
@@ -17,15 +18,15 @@
             <div class="col-4">
                 <label for="apellido" class="form-label">Apellido del usuario</label>
                 <input type="text" class="form-control" name="apellido" id="apellido"
-                    placeholder="Ingrese el apellido del usuario">
+                    placeholder="Ingrese el apellido del usuario" value="{{ old('apellido') }}">
                 @if ($errors->has('apellido'))
                     <p class="text-danger">{{ $errors->first('apellido') }}</p>
                 @endif
             </div>
             <div class="col-4">
                 <label for="email" class="form-label">Email del usuario</label>
-                <input type="text" class="form-control" name="email" id="email"
-                    placeholder="Ingrese el email del usuario">
+                <input type="text" class="form-control" name="email" id="email" placeholder="Ingrese el email del usuario"
+                    value="{{ old('email') }}">
                 @if ($errors->has('email'))
                     <p class="text-danger">{{ $errors->first('email') }}</p>
                 @endif
@@ -33,7 +34,7 @@
             <div class="col-4">
                 <label for="cedula" class="form-label">Cedula del usuario</label>
                 <input type="text" class="form-control" name="cedula" id="cedula"
-                    placeholder="Ingrese el cedula del usuario">
+                    placeholder="Ingrese el cedula del usuario" value="{{ old('cedula') }}">
                 @if ($errors->has('cedula'))
                     <p class="text-danger">{{ $errors->first('cedula') }}</p>
                 @endif
@@ -42,7 +43,7 @@
             <div class="col-4">
                 <label for="telefono" class="form-label">Télefono del usuario</label>
                 <input type="text" class="form-control" name="telefono" id="telefono"
-                    placeholder="Ingrese el telefono del usuario">
+                    placeholder="Ingrese el telefono del usuario" value="{{ old('telefono') }}">
                 @if ($errors->has('telefono'))
                     <p class="text-danger">{{ $errors->first('telefono') }}</p>
                 @endif
@@ -51,7 +52,7 @@
             <div class="col-4">
                 <label for="celular" class="form-label">Celular del usuario</label>
                 <input type="text" class="form-control" name="celular" id="celular"
-                    placeholder="Ingrese el celular del usuario">
+                    placeholder="Ingrese el celular del usuario" value="{{ old('celular') }}">
                 @if ($errors->has('celular'))
                     <p class="text-danger">{{ $errors->first('celular') }}</p>
                 @endif
@@ -60,7 +61,7 @@
             <div class="col-3">
                 <label for="direccion" class="form-label">Dirección del usuario</label>
                 <input type="text" class="form-control" name="direccion" id="direccion"
-                    placeholder="Ingrese el direccion del usuario">
+                    placeholder="Ingrese el direccion del usuario" value="{{ old('direccion') }}">
                 @if ($errors->has('direccion'))
                     <p class="text-danger">{{ $errors->first('direccion') }}</p>
                 @endif
@@ -78,7 +79,11 @@
                 <select class="form-select" aria-label="Default select example" name="rol_id" id="rol_id">
                     <option value="">Seleccione el rol del usuario</option>
                     @foreach ($roles as $rol)
-                        <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                        @if (old('rol_id') == $rol->id)
+                            <option value="{{ $rol->id }}" selected>{{ $rol->nombre }}</option>
+                        @else
+                            <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                        @endif
                     @endforeach
 
 
@@ -89,7 +94,7 @@
             </div>
             <div class="col-3">
                 <label for="foto" class="form-label">Foto del perfil</label>
-                <input type="file" class="form-control" name="foto" id="foto" >
+                <input type="file" class="form-control" name="foto" id="foto">
                 @if ($errors->has('foto'))
                     <p class="text-danger">{{ $errors->first('foto') }}</p>
                 @endif

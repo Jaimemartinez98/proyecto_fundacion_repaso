@@ -29,12 +29,12 @@
 
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    SISTEMA DE HOLI
+                   Sistema de Gestión
                 </a>
 
 
                 @auth
-                    @if (auth()->user()->rol_id == 1)
+                    @if (auth()->user()->rol_id == 1 || auth()->user()->rol_id == 5 )
                         <a class="navbar-brand" href="{{ route('usuarios.index') }}">
                             Usuarios
                         </a>
@@ -77,7 +77,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->nombre }} - {{ Auth::user()->rol->nombre }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

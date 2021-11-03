@@ -78,6 +78,7 @@ class UsuariosController extends Controller
         $usuario->direccion = $request->direccion;
         $usuario->rol_id = $request->rol_id;
         $usuario->email = $request->email;
+
         $usuario->password = Hash::make($request->password);
 
         if ($request->hasFile("foto")) {
@@ -92,8 +93,6 @@ class UsuariosController extends Controller
            $usuario->foto = $nombre;
 
         }
-        $usuario->save();
-
 
         return back();
 
@@ -170,5 +169,6 @@ class UsuariosController extends Controller
         return back();
 
     }
+
 
 }
